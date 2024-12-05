@@ -1,6 +1,6 @@
-package com.sadinamoda.web.domain.products;
+package com.sadinamoda.web.domain.order;
 
-import com.sadinamoda.web.domain.category.Category;
+import com.sadinamoda.web.domain.users.Users;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,25 +8,25 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Table(name = "products")
+@Table(name = "order")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Products {
+public class Order {
     @Id
     @GeneratedValue
     private UUID id;
 
-    private String name;
-    private String description;
-    private BigDecimal price;
-    private Number quantity;
-    private String image_product;
     @ManyToOne
     @JoinColumn(name = "id")
-    private Category id_category;
+    private Users id_user;
+
+    private Date created_date;
+    private String status;
+    private BigDecimal TotalValue;
 }
