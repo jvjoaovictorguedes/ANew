@@ -1,0 +1,14 @@
+C:\Teste\ANew\e_commerce_back_net\bin\Debug\netcoreapp2.1\Ecomerce.deps.json
+C:\Teste\ANew\e_commerce_back_net\bin\Debug\netcoreapp2.1\Ecomerce.runtimeconfig.json
+C:\Teste\ANew\e_commerce_back_net\bin\Debug\netcoreapp2.1\Ecomerce.runtimeconfig.dev.json
+C:\Teste\ANew\e_commerce_back_net\bin\Debug\netcoreapp2.1\Ecomerce.dll
+C:\Teste\ANew\e_commerce_back_net\bin\Debug\netcoreapp2.1\Ecomerce.pdb
+C:\Teste\ANew\e_commerce_back_net\obj\Debug\netcoreapp2.1\Ecomerce.csprojAssemblyReference.cache
+C:\Teste\ANew\e_commerce_back_net\obj\Debug\netcoreapp2.1\Ecomerce.csproj.CoreCompileInputs.cache
+C:\Teste\ANew\e_commerce_back_net\obj\Debug\netcoreapp2.1\Ecomerce.RazorAssemblyInfo.cache
+C:\Teste\ANew\e_commerce_back_net\obj\Debug\netcoreapp2.1\Ecomerce.RazorAssemblyInfo.cs
+C:\Teste\ANew\e_commerce_back_net\obj\Debug\netcoreapp2.1\Ecomerce.AssemblyInfoInputs.cache
+C:\Teste\ANew\e_commerce_back_net\obj\Debug\netcoreapp2.1\Ecomerce.AssemblyInfo.cs
+C:\Teste\ANew\e_commerce_back_net\obj\Debug\netcoreapp2.1\Ecomerce.RazorTargetAssemblyInfo.cache
+C:\Teste\ANew\e_commerce_back_net\obj\Debug\netcoreapp2.1\Ecomerce.dll
+C:\Teste\ANew\e_commerce_back_net\obj\Debug\netcoreapp2.1\Ecomerce.pdb
