@@ -21,12 +21,12 @@ public class Products {
     @GeneratedValue
     private UUID id;
 
-    private String name;
     private String description;
     private BigDecimal price;
-    private Number quantity;
-    private String image_product;
+    private Integer quantity;
+    private String image_url;
+
     @ManyToOne
     @JoinColumn(name = "id")
-    private Category id_category;
+    private Category category_id;
 }

@@ -20,12 +20,13 @@ public class Users {
     @GeneratedValue
     private UUID id;
 
-    private String name;
     @Column(unique = true)
-
     private String email;
+
+    private String name;
     private String password;
     private String phone;
     private String address;
-    private LocalDateTime CreatedDate = LocalDateTime.now();
+    private LocalDateTime created_date;
+
 }
