@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Ecoomerce.Models;
+using Ecomerce.Models;
 
 namespace Ecoomerce.Data
 {
@@ -7,31 +7,27 @@ namespace Ecoomerce.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<Usuario> Usuarios { get; set; }
-        public DbSet<Produto> Produtos { get; set; }
-        public DbSet<Categoria> Categorias { get; set; }
-        public DbSet<Pedido> Pedidos { get; set; }
-        public DbSet<ItemPedido> ItensPedido { get; set; }
-        public DbSet<Pagamento> Pagamentos { get; set; }
-        public DbSet<Favorito> Favoritos { get; set; }
-
+        public DbSet<Users> Users { get; set; }
+        public DbSet<Products> Products { get; set; }
+        public DbSet<Categories> Categories { get; set; }
+        public DbSet<Orders> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Payments> Payments { get; set; }
+        public DbSet<Favorites> Favorites { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            
+            modelBuilder.Entity<OrderItem>()
+                .HasKey(ip => ip.IdOrderItem);
 
-            // Configuração de relacionamento composto para ItemPedido
-            modelBuilder.Entity<ItemPedido>()
-                .HasKey(ip => ip.IdItemPedido);
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(ip => ip.Orders)
+                .WithMany(p => p.OrderItem)
+                .HasForeignKey(ip => ip.IdOrder);
 
-            modelBuilder.Entity<ItemPedido>()
-                .HasOne(ip => ip.Pedido)
-                .WithMany(p => p.ItensPedido)
-                .HasForeignKey(ip => ip.IdPedido);
-
-            modelBuilder.Entity<ItemPedido>()
-                .HasOne(ip => ip.Produto)
-                .WithMany(p => p.ItensPedido)
-                .HasForeignKey(ip => ip.IdProduto);
+            modelBuilder.Entity<Products>()
+                .HasKey(p => p.IdProduct);
         }
     }
 }

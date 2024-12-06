@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -28,7 +27,7 @@ public class Products
         public int IdCategory { get; set; }
         public Categories Categories { get; set; }
 
-        public ICollection<ItemPedido> ItemOrders { get; set; }
-        public ICollection<Favorito> Favorites { get; set; }
+        public ICollection<OrderItem> ItemOrders { get; set; }
+        public ICollection<Favorites> Favorites { get; set; }
     }
 }

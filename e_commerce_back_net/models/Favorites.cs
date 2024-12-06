@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -19,6 +17,4 @@ namespace Ecomerce.Models {
         public int IdProduct { get; set; }
         public Products Products { get; set; }
     }
-}
-
 }

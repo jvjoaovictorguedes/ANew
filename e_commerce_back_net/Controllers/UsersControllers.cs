@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using Ecommerce.Data;
-using Ecommerce.Models;
+using Ecoomerce.Data;
+using Ecomerce.Models;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -32,10 +32,10 @@ public class UsersControllers : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult CreateUser(User user)
+    public IActionResult CreateUser(Users user)
     {
         if (!ModelState.IsValid)
-            return BadRequest("Incorrect data.")
+            return BadRequest("Incorrect data.");
 
         _context.Users.Add(user);
         _context.SaveChanges();
@@ -43,7 +43,7 @@ public class UsersControllers : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateUser(int id, UsersControllers userUpdate){
+    public IActionResult UpdateUser(int id, Users userUpdate){
         var user = _context.Users.Find(id);
 
         if (user == null)
@@ -67,10 +67,10 @@ public class UsersControllers : ControllerBase
     if (user == null)
         return NotFound("User not found.");
     
-    _context.Users.Delete(user);
+    _context.Users.Remove(user);
     _context.SaveChanges();
 
-    return NoContext();
+    return NoContent();
     }
 }
 

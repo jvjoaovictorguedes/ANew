@@ -1,12 +1,10 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace Ecomerce.Models {
 
-    public class ItemPedido
+    public class OrderItem
     {
         [Key]
         public int IdOrderItem { get; set; }

@@ -1,16 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using Ecommerce.Data;
-using Ecommerce.Models;
+using Ecoomerce.Data;
+using Ecomerce.Models;
 
 [ApiController]
 [Route("api/[controller]")]
 
-public class ProductsControlles: ControllerBase {
+public class ProductsController: ControllerBase {
     
     private readonly AppDbContext _context;
 
-    public ProductsControlles(AppDbContext context){
+    public ProductsController(AppDbContext context){
         
         _context = context;
     }
@@ -33,17 +33,19 @@ public class ProductsControlles: ControllerBase {
     }
 
     [HttpPost]
-    public IActionResult CreateProduct(ProductsControlles product){
+    public IActionResult CreateProduct(Products product)
+    {
         if (!ModelState.IsValid)
-            return BadRequest("Incorrect data.");
+        return BadRequest("Incorrect data.");
 
         _context.Products.Add(product);
         _context.SaveChanges();
-        return CreatedAtAction(nameof(GetProductById), new { id = product.IdProduct }, product);    
+        return CreatedAtAction(nameof(GetProductById), new { id = product.IdProduct }, product);
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateProduct(int id, ProductsControlles productUpdate){
+    public IActionResult UpdateProduct(int id, Products productUpdate)
+    {
         var product = _context.Products.Find(id);
 
         if (product == null)
@@ -57,5 +59,8 @@ public class ProductsControlles: ControllerBase {
         product.IdCategory = productUpdate.IdCategory;
         product.ItemOrders = productUpdate.ItemOrders;
         product.Favorites = productUpdate.Favorites;
+
+        _context.SaveChanges();
+        return NoContent();
     }
 }
