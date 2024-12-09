@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Ecoomerce.Data;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -12,6 +14,9 @@ namespace Ecomerce
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDbContext>(options =>
+            options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddControllers();
             services.AddCors(options =>
             {
@@ -21,7 +26,6 @@ namespace Ecomerce
                         .AllowAnyMethod();
                 });
             });
-
             services.AddConnections();
         }   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
             {
@@ -34,11 +38,12 @@ namespace Ecomerce
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
-            app.UseRouting();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapDefaultControllerRoute();
-            });
+                app.UseStaticFiles();
+                app.UseRouting();
+                app.UseCors("PermitirReact");
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllers();
+                });
             }
 }    }

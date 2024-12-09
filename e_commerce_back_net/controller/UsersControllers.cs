@@ -3,18 +3,26 @@ using System.Linq;
 using Ecoomerce.Data;
 using Ecomerce.Models;
 
-namespace Ecomerce.controllers
+namespace Ecomerce.controller
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class UsersControllers(AppDbContext context) : ControllerBase
+    public class UsersController : ControllerBase
     {
-        private readonly AppDbContext _context = context;
+        private readonly AppDbContext _context;
+
+        public UsersController(AppDbContext context)
+        {
+            _context = context;
+        }
 
         [HttpGet]
         public IActionResult GetAllUsers()
         {
             var users = _context.Users.ToList();
+
+            if (users == null)
+                return NotFound("User not found.");
             return Ok(users);
         }
 
