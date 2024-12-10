@@ -22,8 +22,10 @@ namespace Ecomerce
             {
                 options.AddPolicy("PermitirReact", policy =>
                 {
-                    policy.WithOrigins("http://localhost:3000")
-                        .AllowAnyMethod();
+                    policy.WithOrigins("http://localhost:5173");
+                    policy.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
                 });
             });
             services.AddConnections();

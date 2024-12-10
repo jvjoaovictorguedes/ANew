@@ -2,6 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using Ecoomerce.Data;
 using Ecomerce.Models;
+using System.Threading.Tasks;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.Security.Claims;
 
 namespace Ecomerce.controller
 {
@@ -14,6 +20,70 @@ namespace Ecomerce.controller
         public UsersController(AppDbContext context)
         {
             _context = context;
+        }
+
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] Users loginUser)
+        {
+            var user = _context.Users.SingleOrDefault(u => u.Email == loginUser.Email);
+
+            if (user == null || !BCrypt.Net.BCrypt.Verify(loginUser.Password, user.Password))
+            {
+                return Unauthorized(new { message = "Credenciais inválidas." });
+            }
+            var key = GenerateCode.GenerateJwtSecretKey();
+
+            var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256);
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[] {
+                    new Claim(ClaimTypes.NameIdentifier, user.IdUser.ToString()),
+                    new Claim(ClaimTypes.Email, user.Email)
+                }),
+                Expires = DateTime.UtcNow.AddHours(1),
+                SigningCredentials = signingCredentials
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+
+            return Ok(new
+            {
+                Token = tokenHandler.WriteToken(token),
+                User = new
+                {
+                    user.IdUser,
+                    user.Email
+                }
+            });
+        }
+
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(Users users)
+        {
+            if (_context.Users.Any(u => u.Email == users.Email))
+            {
+                return BadRequest(new { message = "Email já está em uso." });
+            }
+
+            var passwordHash = BCrypt.Net.BCrypt.HashPassword(users.Password);
+
+            var user = new Users
+            {
+                Name = users.Name,
+                Email = users.Email,
+                Password = passwordHash,
+                Phone = users.Phone,
+                Address = users.Address,
+                CreatedDate = DateTime.UtcNow
+            };
+
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Usuário registrado com sucesso!" });
         }
 
         [HttpGet]

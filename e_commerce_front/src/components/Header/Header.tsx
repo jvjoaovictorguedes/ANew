@@ -1,9 +1,22 @@
 import React, { useState } from "react";
 import { FaShoppingCart, FaSearch, FaUser } from "react-icons/fa";
 import ImageLogo from "../../assets/images/SS.jpg";
+import { useAuth } from "../../context/AuthContext/AuthContext";
 
 const Header: React.FC = () => {
   const [hover, setHover] = useState(false);
+  const { isAuthenticated } = useAuth();
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+
+  const handleAddToCart = () => {
+    if (isAuthenticated) {
+      window.location.href = "/cart";
+    } else {
+      setShowLoginPrompt(true);
+    }
+  };
+
+  const closeLoginPrompt = () => setShowLoginPrompt(false);
 
   const toggleHover = () => {
     setHover((prevState) => !prevState);
@@ -80,13 +93,39 @@ const Header: React.FC = () => {
             />
             <FaSearch className="text-gray-500" />
           </div>
-          <a href="/cart" className="hover:text-gold transition-colors">
+          <a
+            onClick={handleAddToCart}
+            className="hover:text-gold transition-colors cursor-pointer"
+          >
             <FaShoppingCart size={20} />
           </a>
           <a href="/login" className="hover:text-gold transition-colors">
             <FaUser size={20} />
           </a>
         </div>
+        {showLoginPrompt && (
+          <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
+            <div className="bg-white p-6 rounded-lg max-w-sm w-full">
+              <h3 className="text-xl font-semibold text-black mb-4">
+                Você precisa estar logado para adicionar produtos ao carrinho!
+              </h3>
+              <div className="flex justify-between">
+                <button
+                  onClick={closeLoginPrompt}
+                  className="bg-gray-200 px-6 py-2 rounded-lg text-black"
+                >
+                  Fechar
+                </button>
+                <button
+                  onClick={() => (window.location.href = "/login")}
+                  className="bg-pink-500 text-white px-6 py-2 rounded-lg"
+                >
+                  Ir para Login
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );

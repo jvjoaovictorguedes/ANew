@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 
 type AuthContextType = {
   isAuthenticated: boolean;
@@ -16,9 +22,28 @@ type AuthProviderProps = {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
-  const login = () => setIsAuthenticated(true);
-  const logout = () => setIsAuthenticated(false);
-  const register = () => setIsAuthenticated(true); // Você pode expandir essa função conforme a necessidade
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, []);
+
+  const login = () => {
+    localStorage.setItem("token", "yourTokenHere");
+    setIsAuthenticated(true);
+  };
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    setIsAuthenticated(false);
+  };
+
+  const register = () => {
+    setIsAuthenticated(true);
+  };
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, login, logout, register }}>

@@ -9,7 +9,6 @@ namespace Ecomerce.Models
         [Key]
         public int IdUser { get; set; }
 
-        [Required]
         [MaxLength(100)]
         public string Name { get; set; }
 
