@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\joao_\\Documents\\TT\\ANew\\e_commerce_back_net\\Ecomerce.csproj": {}
+    "C:\\Users\\53543_joao\\Documents\\ANew\\e_commerce_back_net\\Ecomerce.csproj": {}
   },
   "projects": {
-    "C:\\Users\\joao_\\Documents\\TT\\ANew\\e_commerce_back_net\\Ecomerce.csproj": {
+    "C:\\Users\\53543_joao\\Documents\\ANew\\e_commerce_back_net\\Ecomerce.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\joao_\\Documents\\TT\\ANew\\e_commerce_back_net\\Ecomerce.csproj",
+        "projectUniqueName": "C:\\Users\\53543_joao\\Documents\\ANew\\e_commerce_back_net\\Ecomerce.csproj",
         "projectName": "Ecomerce",
-        "projectPath": "C:\\Users\\joao_\\Documents\\TT\\ANew\\e_commerce_back_net\\Ecomerce.csproj",
-        "packagesPath": "C:\\Users\\joao_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\joao_\\Documents\\TT\\ANew\\e_commerce_back_net\\obj\\",
+        "projectPath": "C:\\Users\\53543_joao\\Documents\\ANew\\e_commerce_back_net\\Ecomerce.csproj",
+        "packagesPath": "C:\\Users\\53543_joao\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\53543_joao\\Documents\\ANew\\e_commerce_back_net\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\joao_\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\53543_joao\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

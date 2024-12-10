@@ -12,7 +12,6 @@ const Header: React.FC = () => {
   return (
     <header className="bg-gradient-to-r from-pink-300 to-pink-dark text-white shadow-md">
       <div className="container px-4 flex items-center justify-between py-4">
-        {/* Logo */}
         <div className="flex items-center">
           <a href="/">
             <img
@@ -22,14 +21,10 @@ const Header: React.FC = () => {
             />
           </a>
         </div>
-
-        {/* Menu de Navegação */}
         <nav className="hidden md:flex space-x-32 relative">
           <a href="/" className="hover:text-gold transition-colors font-medium">
             Inicio
           </a>
-
-          {/* Produtos com Submenu */}
           <div className="relative">
             <p
               className="hover:text-gold transition-colors font-medium hover:cursor-pointer"
@@ -37,8 +32,6 @@ const Header: React.FC = () => {
             >
               Produtos
             </p>
-
-            {/* Submenu de Categorias */}
             {hover && (
               <div className="absolute top-8 left-0 bg-white text-black shadow-lg rounded-md w-48 py-4 z-50">
                 <ul className="space-y-2">
@@ -78,10 +71,7 @@ const Header: React.FC = () => {
             Contato
           </a>
         </nav>
-
-        {/* Ações - Busca, Carrinho e Login */}
         <div className="flex items-center space-x-4">
-          {/* Campo de Busca */}
           <div className="hidden md:flex items-center bg-white text-black px-3 py-1 rounded-full">
             <input
               type="text"
@@ -90,13 +80,9 @@ const Header: React.FC = () => {
             />
             <FaSearch className="text-gray-500" />
           </div>
-
-          {/* Ícone do Carrinho */}
-          <a href="/carrinho" className="hover:text-gold transition-colors">
+          <a href="/cart" className="hover:text-gold transition-colors">
             <FaShoppingCart size={20} />
           </a>
-
-          {/* Ícone de Login */}
           <a href="/login" className="hover:text-gold transition-colors">
             <FaUser size={20} />
           </a>

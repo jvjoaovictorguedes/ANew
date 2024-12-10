@@ -1,19 +1,24 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Footer from "./components/Footer/Footer";
-import Header from "./components/Header/Header";
-import HeroBanner from "./components/HeroBanner/HeroBanner";
-import Products from "./components/Products/Products";
-import Prominence from "./components/Prominence/Prominence";
+import Login from "./page/Login/Login";
+import Home from "./page/Home/Home";
+import Cart from "./page/Cart/Cart";
+import { CartProvider } from "./context/CartContext/CartContext";
+import { AuthProvider } from "./context/AuthContext/AuthContext";
 
 function App() {
   return (
-    <>
-      <Header />
-      <HeroBanner />
-      <Prominence />
-      <Products />
-      <Footer />
-    </>
+    <AuthProvider>
+      <CartProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </Router>
+      </CartProvider>
+    </AuthProvider>
   );
 }
 
