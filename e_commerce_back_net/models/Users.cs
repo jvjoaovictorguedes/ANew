@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Ecomerce.Models {
-public class Users
+namespace Ecomerce.Models
+{
+    public class Users
     {
         [Key]
         public int IdUser { get; set; }
-        
+
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
@@ -25,7 +26,7 @@ public class Users
 
         public string Address { get; set; }
 
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public DateTime CreatedDate { get; set; }
 
         public ICollection<Orders> Orders { get; set; }
         public ICollection<Favorites> Favorites { get; set; }
