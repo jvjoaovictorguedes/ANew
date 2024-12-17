@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import { FaShoppingCart, FaSearch, FaUser } from "react-icons/fa";
+import {
+  FaShoppingCart,
+  FaSearch,
+  FaUser,
+  FaSignOutAlt,
+  FaSignInAlt,
+} from "react-icons/fa";
 import ImageLogo from "../../assets/images/SS.jpg";
 import { useAuth } from "../../context/AuthContext/AuthContext";
 
 const Header: React.FC = () => {
   const [hover, setHover] = useState(false);
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
 
   const handleAddToCart = () => {
@@ -93,15 +99,30 @@ const Header: React.FC = () => {
             />
             <FaSearch className="text-gray-500" />
           </div>
-          <a
-            onClick={handleAddToCart}
-            className="hover:text-gold transition-colors cursor-pointer"
-          >
-            <FaShoppingCart size={20} />
-          </a>
-          <a href="/login" className="hover:text-gold transition-colors">
-            <FaUser size={20} />
-          </a>
+          {isAuthenticated ? (
+            <>
+              <a
+                onClick={handleAddToCart}
+                className="hover:text-gold transition-colors cursor-pointer"
+              >
+                <FaShoppingCart size={20} />
+              </a>
+              <a href="/user" className="hover:text-gold transition-colors">
+                <FaUser size={20} />
+              </a>
+              <a
+                href="/"
+                onClick={logout}
+                className="hover:text-gold transition-colors"
+              >
+                <FaSignOutAlt size={20} />
+              </a>
+            </>
+          ) : (
+            <a href="/login" className="hover:text-gold transition-colors">
+              <FaSignInAlt size={20} />
+            </a>
+          )}
         </div>
         {showLoginPrompt && (
           <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">

@@ -1,4 +1,4 @@
-import CartComponent from "../../components/CartComponent/CartComponent";
+import CartComponent from "../../components/Cart/CartComponent";
 import Header from "../../components/Header/Header";
 
 export default function Cart() {

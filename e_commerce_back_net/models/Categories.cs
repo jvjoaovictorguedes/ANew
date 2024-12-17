@@ -15,5 +15,4 @@ public class Categories
 
         public ICollection<Products> Products { get; set; }
     }
-
 }

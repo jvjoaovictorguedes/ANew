@@ -72,7 +72,7 @@ namespace Ecommerce.controller {
             var product = _context.Products.Find(id);
 
             if (product == null)
-                return NotFound("User not found.");
+                return NotFound("Product not found.");
 
             _context.Products.Remove(product);
             _context.SaveChanges();
